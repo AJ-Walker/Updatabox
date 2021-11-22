@@ -1,0 +1,45 @@
+{% extends 'dash.html' %} 
+{% block title %} Dashboard | Files {% endblock title %} 
+
+  {% block content_page %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category,message in messages %}
+    <div class="notification is-{{ category }}">
+        <button class="delete"></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  <h5 class='title'>
+    Download File
+</h5>
+<hr>
+<div class="column is-4">
+    <h3 class="title">Enter your Password.</h3>
+    <div class="box">
+        <form method="POST" id="key_form">
+            <div class="field">
+                <label class="label has-text-left">Enter your password to get your Security key for the file you want to download.</label>
+                <div class="control">
+                    <input class="input" type="password" id="pass" name="password" placeholder="********">
+                </div>
+                <p class="help" id="passReq"></p>
+            </div>
+            <button class="button is-block is-info is-fullwidth">Submit</button><br>
+        </form> 
+    </div>
+</div>
+<a class="button is-info" href="{{ url_for('auth.downloadFile', filename=filename) }}">Back</a>
+
+
+
+
+  {% endblock content_page %}
+
+  {% block js %}
+
+  <script src="{{ url_for('static', filename='js/password.js') }}"></script>
+  
+  {% endblock js %}

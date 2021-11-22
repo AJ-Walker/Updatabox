@@ -1,0 +1,109 @@
+{% extends 'dash.html' %} 
+{% block title %} Dashboard | Files {% endblock title %} 
+
+  {% block content_page %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category,message in messages %}
+    <div class="notification is-{{ category }}">
+        <button class="delete"></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('auth.upload') }}" id="upload_form" method="POST" enctype="multipart/form-data">
+<div class="box">
+  <h1 class="title is-6">Select Files to upload</h1>
+  <div class="columns">
+    <div class="column is-4">
+      <div id="file-js-example" class="file has-name is-medium is-fullwidth is-primary">
+        <label class="file-label">
+          <input class="file-input" type="file" name="file" id="file">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
+          </span>
+          <span class="file-name">
+            No file uploaded
+          </span>
+        </label>
+      </div>
+    </div>
+    <div class="column is-3">
+      <button class="button is-medium is-fullwidth is-primary" type="submit" formaction="{{ url_for('auth.upload') }}">Upload</button>
+    </div>
+    <div class="column is-3">
+      <button class="button is-medium is-fullwidth is-primary" type="submit" formaction="{{ url_for('auth.enc_upload') }}">Encrypt & Upload</button>
+    </div>
+  
+  </div>
+</div>
+</form>
+<hr>
+  <h1 class="title is-6">All Files</h1>
+  <div class="box">
+    {% if obj_count==1 %}
+    <table class="table is-fullwidth is-hoverable">
+      <thead>
+        <tr>
+          <th>Filename</th>
+          <th>Last Modified</th>
+          <th>Type</th>
+          <th>Size</th>
+          <th>Download</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for f in files %}
+      <tr>
+        <td>{{ f.key }}</td>
+      <td>{{ f.last_modified | datetimeformat }}</td>
+      <td>{{ f.key | file_type }}</td>
+      <td>{{ f.size | file_size }}</td>
+      <td>
+        <form action="{{ url_for('auth.download') }}" method="POST">
+        <input type="hidden" name="key" value="{{ f.key }}">
+        <input type="hidden" name="downFile" value="fileVal">
+        <button type="submit" class="button is-success ml-4">
+          <i class="fa fa-download"></i>
+        </button>
+      </form>
+    </td>
+      <td>
+        <form action="{{ url_for('auth.delete') }}" method="POST">
+        <input type="hidden" name="key" value="{{ f.key }}">
+        <input type="hidden" name="delFile" value="fileVal">
+        <button type="submit" class="button is-danger ml-1">
+          <i class="fa fa-trash-alt"></i>
+        </button>
+      </form>
+    </td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <h1 class="subtitle"> No files. <strong> Choose a file</strong> to start uploading.</h1>
+    {% endif %}
+  </div>
+  
+  
+  {% endblock content_page %}
+
+{% block js %}
+<script>
+
+const fileInput = document.querySelector('#file-js-example input[type=file]');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('#file-js-example .file-name');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
+</script>
+{% endblock js %}

@@ -1,0 +1,124 @@
+{% extends 'base.html' %} 
+{% block title %} Updatabox | Home {% endblock title %} 
+{% block index %} is-active {% endblock index %}
+{% block body %}
+
+<!-- hero section -->
+<section class="hero is-info is-halfheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <!-- Landing page Title -->
+        <div class="column">
+          <h1 class="title is-1 is-light is-semibold is-spaced">
+            Secured Data Storage in the Cloud
+          </h1>
+          <h2 class="subtitle is-5 is-light is-thin">
+            Easy and Safe Storage, Upload and Download!
+          </h2>
+          <!-- CTA -->
+          <p class="buttons">
+            <a href="{{ url_for('auth.signup') }}"
+              class="button is-black">
+              <span class="text">Get Started</span>
+            </a>
+            <a href="{{ url_for('about') }}"
+              class="button is-white">
+              <span class="text">Learn More</span>
+            </a>
+          </p>
+        </div>
+        <!-- Hero image -->
+        <div class="column">
+          <img
+            src="{{ url_for('static', filename='images/sl-bg.png') }}"
+            alt=""
+            height="450px"
+            width="800px"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section is-small">
+  <div class="container has-text-centered">
+    <h1 class="title">Features</h1>
+    <div class="columns p-6">
+      <div class="column">
+        <div class="box">
+        <h1 class="title">Lorem, ipsum.</h1>
+        <h1 class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, aut.</h1>
+        </div>
+      </div>
+      <div class="column">
+        <div class="box">
+        <h1 class="title">Lorem, ipsum.</h1>
+        <h1 class="subtitle">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, aliquid!</h1>
+      </div>
+      </div>
+      <div class="column">
+        <div class="box">
+        <h1 class="title">Lorem, ipsum.</h1>
+        <h1 class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, officiis!</h1>
+      </div>
+      </div>
+      <div class="column">
+        <div class="box">
+        <h1 class="title">Lorem, ipsum.</h1>
+        <h1 class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, modi.</h1>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section is-small has-background-white">
+    <div class="container has-text-centered">
+      <h1 class="title">Our Customers</h1>
+      
+      <div class="columns p-6">
+        <div class="column">
+          <div class="box">
+          <h1 class="title">Lorem, ipsum.</h1>
+          <h1 class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, aut.</h1>
+          </div>
+        </div>
+        <div class="column">
+          <div class="box">
+          <h1 class="title">Lorem, ipsum.</h1>
+          <h1 class="subtitle">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, aliquid!</h1>
+        </div>
+        </div>
+        <div class="column">
+          <div class="box">
+          <h1 class="title">Lorem, ipsum.</h1>
+          <h1 class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, officiis!</h1>
+        </div>
+        </div>
+        <div class="column">
+          <div class="box">
+          <h1 class="title">Lorem, ipsum.</h1>
+          <h1 class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, modi.</h1>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer has-text-centered has-background-dark">
+      <div class="container">
+          <h1 class="title has-text-white">
+              Updatabox
+          </h1>
+          <h1 class="subtitle has-text-white">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro quis enim, excepturi ipsam obcaecati exercitationem unde soluta maxime inventore? Suscipit excepturi quidem fuga qui praesentium sint explicabo ut quo vero.
+          </h1>
+          <h1 class="subtitle has-text-white">Copyright @2021 Updatabox : By Abhay.</h1>
+      </div>
+  </footer>
+
+{% endblock body %}
+

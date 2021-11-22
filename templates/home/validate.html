@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %} Updatabox | Signup {% endblock title %}
+
+{% block body %}
+
+<section class="hero is-white is-fullheight">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category,message in messages %}
+    <div class="notification is-{{ category }}">
+        <button class="delete"></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="hero-body">
+      
+        <div class="container has-text-centered">
+          
+            <div class="column is-4 is-offset-4">
+                <h3 class="title has-text-black">Email Verification</h3>
+            
+                <hr class="has-background-black">
+                <h1 class="subtitle">A OTP(One Time Passcode) has been sent to your email address.</h1>
+                <div class="box">
+                    <form method="POST" class="has-text-left" id="otpForm">
+                        <div class="field">
+                            <label class="label has-text-left">Please enter the OTP below to verfiy your email address</label>
+                            <div class="control">
+                              <input class="input" type="text" name="otpcode" id="otpcode" placeholder="e.g. 765302" required>
+                            </div>
+                            <p class="help" id="otpReq"></p>
+                          </div>
+                          <button type="submit" class="button is-success">Verify</button>
+                        </form>
+                </div>
+                <a class="button is-info" href = "/generate/{{ email }}">Resend OTP</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}
+
+{% block js %}
+
+<script src="{{ url_for('static', filename='js/otpValidate.js') }}"></script>
+
+{% endblock js %}
+

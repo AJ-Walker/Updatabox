@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} Updatabox | About Us {% endblock title %}
+{% block about %} is-active {% endblock about %}
+{% block body %}
+
+<section class="hero is-fullheight is-white">
+    <div class="hero-body">
+    <div class="container">
+        <div class="columns is-8 is-variable">
+            <div class="column">
+                <h1 class="title is-1">Updatabox</h1>
+                <p class="is-size-4">We provide data storage in the cloud.</p>
+                <div class="box mt-3">
+                
+                <ul class="features-list">
+                    <li class="listitem">Storage up to 5GB</li>
+                    <li class="listitem">Adding two layers of security</li>
+                    <li class="listitem">Any type of data accepted</li>
+                    <li class="listitem">Secure Data</li>
+                    <li class="listitem">Real Time Sharing</li>
+                    <li class="listitem">Other awesome features</li>
+                </ul></div>
+            </div>
+            <div class="column">
+                
+                <figure class="image is-5by3">
+                    <img src="{{ url_for('static', filename='images/sl-bg.png') }}" alt="" height="450px" width="800px"/>
+                  </figure>
+            </div>
+        </div>
+    </div></div>
+</section>
+
+{% endblock body %}

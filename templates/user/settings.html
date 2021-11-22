@@ -1,0 +1,23 @@
+{% extends 'dash.html' %} 
+{% block title %} Dashboard | Settings {% endblock title %} 
+
+  {% block content_page %}
+  <h5 class='title'>
+    Account Settings
+</h5>
+<div class="box">
+  <h1 class="subtitle">Change Email</h1>
+  <a class="button is-info" href="{{ url_for('auth.changeEmail') }}">Change Email</a>
+</div>
+<div class="box">
+  <h1 class="subtitle">Change Password</h1>
+  <a class="button is-info" href="{{ url_for('auth.changePasswd') }}">Change Password</a>
+</div>
+<div class="box">
+  <h1 class="subtitle">Delete Account</h1>
+  <p class="subtitle">Deleting your account will also delete your storage.</p>
+  <a class="button is-danger" href="{{ url_for('auth.deleteAccount') }}">Delete Account</a>
+</div>
+
+  {% endblock content_page %}
+

@@ -1,0 +1,82 @@
+{% extends 'dash.html' %} 
+{% block title %} Dashboard | Files {% endblock title %} 
+
+  {% block content_page %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category,message in messages %}
+    <div class="notification is-{{ category }}">
+        <button class="delete"></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  <div class="box">
+    <div class="columns">
+        <div class="column p-5">
+            <p class="title is-2">Welcome {{ name }}</p>
+            <p class="subtitle is-4">Here are your some of your recent files. <br>Check it out.</p>
+        </div>
+        <div class="column has-text-right pr-6">
+            <img src="{{ url_for('static', filename='images/d-logo.jpg') }}" alt="" height="240px" width="240px"/>
+    
+  </div>
+</div>
+</div>
+<h1 class="title">Recent Files</h1>
+  <div class="box">
+    
+      {% if files|length > 1 %}
+      <table class="table is-fullwidth is-hoverable">
+        <thead>
+          <tr>
+            <th>Filename</th>
+            <th>Last Modified</th>
+            <th>Type</th>
+            <th>Size</th>
+            <th>Download</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for f in files %}
+      <tr>
+        <td>{{ f['Key'] }}</td>
+      <td>{{ f['LastModified'] | datetimeformat }}</td>
+      <td>{{ f['Key'] | file_type }}</td>
+      <td>{{ f['Size'] | file_size }}</td>
+      <td>
+        <form action="{{ url_for('auth.download') }}" method="POST">
+        <input type="hidden" name="key" value="{{ f['Key'] }}">
+        <input type="hidden" name="downFile" value="dashboard">
+        <button type="submit" class="button is-success ml-4">
+          <i class="fa fa-download"></i>
+        </button>
+      </form>
+      </td>
+        <td>
+          <form action="{{ url_for('auth.delete') }}" method="POST">
+          <input type="hidden" name="key" value="{{ f['Key'] }}">
+          <input type="hidden" name="delFile" value="dashboard">
+          <button type="submit" class="button is-danger ml-1">
+            <i class="fa fa-trash-alt"></i>
+          </button>
+        </form>
+      </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+      
+        
+      {% else %}
+      
+          <h1 class="subtitle">No Recent Files</h1>
+        
+      {% endif %}
+    
+  </div>
+
+  {% endblock content_page %}
+

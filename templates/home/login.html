@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %} Updatabox | Login {% endblock title %}
+
+{% block body %}
+<section class="hero is-white is-fullheight">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category,message in messages %}
+    <div class="notification is-{{ category }}">
+        <button class="delete"></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="hero-body">
+      
+        <div class="container has-text-centered">
+            <div class="column is-4 is-offset-4">
+                <h3 class="title has-text-black">Login</h3>
+                <hr class="has-background-black">
+                <div class="box">
+                    
+                    <form method="POST" action="/login" class="has-text-left" id="loginForm">
+                            <div class="field">
+                              <label class="label">Email</label>
+                              <div class="control">
+                                <input class="input" type="email" id="email" name="email" placeholder="e.g. alex@example.com">
+                              </div>
+                              <p class="help" id="emailReq"></p>
+                            </div>
+                        
+                            <div class="field">
+                              <label class="label">Password</label>
+                              <div class="control">
+                                <input class="input" type="password" id="pass" name="password" placeholder="********">
+                              </div>
+                              <p class="help" id="passReq"></p>
+                            </div>
+                            <div class="field has-text-centered">
+                              <label class="checkbox">
+                                  <input type="checkbox" name="remember">
+                                  Remember me
+                              </label>
+                          </div>
+                          
+                            <button type="submit" class="button is-link is-block is-fullwidth">Login</button>
+                          </form>
+                    </form>
+                </div>
+                
+                <p class="has-text-grey">
+                    <a href="/signup">Sign Up</a> &nbsp;·&nbsp;
+                    <a href="{{ url_for('auth.forgetPassword') }}">Forgot Password</a> &nbsp;·&nbsp;
+                    <a href="/contact">Need Help?</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}
+
+{% block js %}
+
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+{% endblock js %}

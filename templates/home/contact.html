@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %} Updatabox | Contact {% endblock title %}
+{% block contact %} is-active {% endblock contact %}
+{% block body %}
+
+<section class="hero is-fullheight is-white">
+	{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category,message in messages %}
+    <div class="notification is-{{ category }}">
+        <button class="delete"></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+		<div class="hero-body">
+			<div class="container has-text-centered">
+				
+				<div class="columns is-8 is-variable ">
+					<div class="column is-two-thirds has-text-left">
+						<h1 class="title is-1">Contact Us</h1>
+						<p class="is-size-4">We would like to hear from you and If you have any queries regarding <strong>Updatabox</strong> or any suggestions. </p><br>
+						<p class="is-size-4">Please feel free to contact us.</p>
+					</div>
+					<div class="column is-one-third has-text-left">
+					<form method="post" onsubmit="return checkDetails()">
+							<div class="field">
+								<label class="label">Name</label>
+								<div class="control">
+									<input class="input is-medium" type="text" id="nameId" name="name" required>
+								</div>
+								<p class="help" id="nameReq"></p>
+							</div>
+						
+						<div class="field">
+							<label class="label">Email</label>
+							<div class="control">
+								<input class="input is-medium" type="email" id="email" name="email" required>
+							</div>
+							<p class="help" id="emailReq"></p>
+						</div>
+						<div class="field">
+							<label class="label">Message</label>
+							<div class="control">
+								<textarea class="textarea" id="mesg" name="message" required></textarea>
+							</div>
+							<p class="help" id="msgReq"></p>
+						</div>
+						<div class="control">
+							<button type="submit" class="button is-link is-fullwidth has-text-weight-medium is-medium">Send Message</button>
+						</div>
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+{% endblock body %}
+
+{% block js %}
+
+
+<script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+{% endblock js %}

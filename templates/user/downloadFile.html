@@ -1,0 +1,44 @@
+{% extends 'dash.html' %} 
+{% block title %} Dashboard | Files {% endblock title %} 
+
+  {% block content_page %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category,message in messages %}
+    <div class="notification is-{{ category }}">
+        <button class="delete"></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  <h5 class='title'>
+    Download File
+</h5>
+<hr>
+<div class="column is-4">
+    <h3 class="title">Enter Security Key</h3>
+    <div class="box">
+        <form method="POST" action="{{ url_for('auth.downloadFile_post', filename=filename) }}">
+            <div class="field">
+                <label class="label has-text-left">Enter the Security Key </label>
+                <div class="control">
+                    <input class="input" type="password" name="seckey" 
+placeholder="Security Key">
+                </div>
+            </div>
+            <button class="button is-block is-info is-fullwidth">Download</button>
+            <hr>
+            <input type="hidden" name="filename" value="{{ filename }}">
+            <a class="button is-block is-info is-fullwidth" href="{{ url_for('auth.forgotKey', filename=filename )}}"> Forgot your Key</a>
+            
+        </form> 
+    </div>
+</div>
+<a class="button is-info" href="{{ url_for('auth.files') }}">Back</a>
+
+
+
+
+  {% endblock content_page %}
+

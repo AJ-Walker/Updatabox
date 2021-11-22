@@ -1,0 +1,44 @@
+{% extends 'dash.html' %} 
+{% block title %} Dashboard | Settings {% endblock title %} 
+
+  {% block content_page %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category,message in messages %}
+    <div class="notification is-{{ category }}">
+        <button class="delete"></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  <h5 class='title'>
+    Account Settings
+</h5>
+<div class="column is-4">
+<div class="box">
+    <h3 class="title is-5">Change Email</h3>
+    <hr>
+    
+        <form method="POST" action="{{ url_for('auth.changeEmail') }}" id="emailVerify">
+            <div class="field">
+                <label class="label has-text-left">Please enter the new Email</label>
+                <div class="control">
+                    <input class="input" type="email" name="email" id="email" placeholder="Your New Email" autofocus="" required>
+                </div>
+                <p class="help" id="emailReq"></p>
+            </div>
+            <button type="submit" class="button is-info is-fullwidth">Continue</button>
+        </form>
+    </div>
+</div>
+
+
+
+  {% endblock content_page %}
+
+  {% block js %}
+
+  <script src="{{ url_for('static', filename='js/emailVerify.js') }}"></script>
+  
+  {% endblock js %}

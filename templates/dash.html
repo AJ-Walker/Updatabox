@@ -1,0 +1,18 @@
+{% extends 'base.html' %} 
+{% block title %} Dashboard {% endblock title %} 
+{% block body %}
+
+<aside class="menu px-3" id="sidemenu">
+  <ul class="menu-list is-size-5">
+  <li><a href="{{ url_for('auth.dashboard') }}"><i class="fas fa-home iq-icon"></i><span>Dashboard</span></a></li>
+  <li><a href="{{ url_for('auth.files') }}"><i class="fas fa-file-alt iq-icon"></i><span>Files</span></a></li>
+  <li><a href="{{ url_for('auth.account_set') }}"><i class="fas fa-cog iq-icon"></i><span>Settings</span></a></li>
+  </ul>
+</aside>
+<div class="content-page">
+  {% block content_page %}
+  {% endblock content_page %}
+</div>
+
+{% endblock body %}
+
